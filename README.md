@@ -127,9 +127,10 @@ Fortunately, in our case there is a single class and it is binary (0/1), the ran
 ---
 ## 3. MODELING
 ### Eligible models
-As it is a supervised classification problem I will take the **Logistic Regression** algorithm as a baseline. If I have 
-enough time to do it,this baseline will be compared to tree based algorithms which are known to handle pretty well 
-imbalanced data (such as _Random Forest_ for example).
+As it is a supervised classification problem I will take the **Logistic Regression** algorithm as a baseline.  
+This baseline will be compared to tree based algorithms which are known to handle pretty well 
+imbalanced data (such as _Random Forest_ for example) and an ensembling boosting one: _Gradient-Boosted Tree_.  
+All those models are part of the Spark ML lib so we can use them.
 
 ### Feature Engineering
 A lot of features have been extracted from the `Data Exploration phase` (for more details, please refer to this
@@ -151,6 +152,15 @@ A lot of features have been extracted from the `Data Exploration phase` (for mor
 | Gradient-Boosted Tree               | 1min 1s          | 0.82     | 0.83               | 0.84            |
 | Tuned Gradient-Boosted Tree         | 24min 48s        | 0.82     | 0.83               | 0.84            |
 
+***Note:*** With the parameters by default the **Gradient-Boosted Tree is our best model with a F1-Score=0.82**. Even if it 
+is the algorithm that takes much more time to run (due to the sequence of tree addition), we can afford it because the performance
+is very high compared to others solutions that have been tried.
+
+### Features importance
+As we are using a tree-based solution we can plot a graph with the 'features importance': it will then gives us more information
+about what, in the dataset, contributed the most to the churn prediction.   
+![feature importance](assets/results_feature_importance.png)
+
 ***Observations:***  
 _In this dataset and with the features I have created:_
 * **the one that contributes the most to determine if a user will churn or not is
@@ -161,12 +171,6 @@ the exploration phase)
 songs that are suggested** by the service for example.
 * On the other side, we can see that the **user's operating system has few importance**. As it was quite painful to collect I suggest that
 we get rid of that information as a further improvement of this model. The data collect pipeline would be much more faster.
-
-
-### Features importance
-As we are using a tree-based solution we can plot a graph with the 'features importance': it will then gives us more information
-about what, in the dataset, contributed the most to the churn prediction.   
-![feature importance](assets/results_feature_importance.png)
 
 
 ### Conclusion
