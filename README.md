@@ -176,7 +176,8 @@ we get rid of that information as a further improvement of this model. The data 
 ### Conclusion
 We now have a model that can detect churn users with a pretty good performance (F1-Score is 0.82 with good precision and recall).
 We could use this model on the whole database of users, classify them and give the list of users that might soon churn to a commercial/marketing
-service that can contact them and propose incentives for them to stay.
+service that can contact them and propose incentives for them to stay.  
+If you want to, here is my [blog post](https://nidragedd.github.io/churn-prediction-keep-your-customers-by-your-side/) about this project.
 
 ---
 ## 5. TECHNICAL PART
